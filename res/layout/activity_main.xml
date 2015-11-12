@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.blackurl.MainActivity" >
+
+    <Button
+        android:id="@+id/blackurl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="访问黑网址" />
+
+    <Button
+        android:id="@+id/writeurl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="访问正常网址" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/installwrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="安装白应用静默" />
+
+        <Button
+            android:id="@+id/installwritenomal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="安装白应用普通" />
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/installblack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="安装黑应用静默" />
+
+        <Button
+            android:id="@+id/installblacknomal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="安装黑应用普通" />
+    </LinearLayout>
+    
+    <Button 
+        android:id="@+id/sendsmg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送恶意短信"
+        />
+    
+    
+    <TextView
+        android:id="@+id/myname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Power By 特征库" />
+
+</LinearLayout>
