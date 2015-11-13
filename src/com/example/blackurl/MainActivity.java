@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ContentHandler;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
@@ -67,6 +70,7 @@ public class MainActivity extends Activity {
 			Log.d("phoneinfo", phoneInfo.toString());
 		}
 		
+		
 		Button blackbutton = (Button) findViewById(R.id.blackurl);
 		Button writebutton = (Button) findViewById(R.id.writeurl);
 		Button installwrite = (Button) findViewById(R.id.installwrite);
@@ -74,7 +78,9 @@ public class MainActivity extends Activity {
 		Button installblack = (Button) findViewById(R.id.installblack);
 		Button installblacknamal = (Button) findViewById(R.id.installblacknomal);
 		Button sendsmg = (Button) findViewById(R.id.sendsmg);
-		
+		Button sendhttp = (Button) findViewById(R.id.sendhttp);
+		final EditText edittext = (EditText) findViewById(R.id.showhttpRes);
+
 		
 		//黑白网站库		
 		final List<String> blackurlList = new ArrayList<String>();
@@ -88,7 +94,45 @@ public class MainActivity extends Activity {
 		blackurlList.add("http://600116.dofox.gq/");
 		blackurlList.add("http://dbpsj.com/edu/index.html?http://baidu.com/=600116");
 	
-		//获取本机号码
+		//模拟发送http get 请求
+		sendhttp.setOnClickListener(new OnClickListener() {
+			public void onClick(final View v) {
+				List<String> urllist = new ArrayList<String>();
+				urllist.add("http://www.baidu.com");
+				urllist.add("http://www.so.com");
+				urllist.add("http://www.yangyanxing.com");
+				urllist.add("http://www.sohu.com");
+				urllist.add("http://down.360safe.com/123.cab");
+				
+				for (final String url : urllist) {
+				new Thread(new Runnable() {
+					public void run() {
+						try {
+							final HttpURLConnection urlconn = (HttpURLConnection) HttpRequestUtil.sendGetRequest(url,null,null);
+							System.out.println(urlconn.getResponseCode());
+//							InputStream in = urlconn.getInputStream();
+//							final String rst = HttpRequestUtil.read2String(in);
+							v.post(new Runnable() {
+								public void run() {
+									try {
+										edittext.append(url+":"+String.valueOf(urlconn.getResponseCode()));
+										edittext.append("\r\n");										
+									} catch (IOException e) {										
+										e.printStackTrace();
+									}								
+								}
+							});
+								
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						
+					}
+				}).start();
+			}
+				
+			}
+		});
 		
 		
 		//点击模拟发送短信
